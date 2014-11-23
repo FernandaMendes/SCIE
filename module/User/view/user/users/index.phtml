@@ -11,6 +11,8 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Email</th>
+        <th>Tipo de usuario</th>
+        <th>Status</th>
         <th>Ação</th>
     </tr>
     
@@ -20,6 +22,8 @@
         <td><?php echo $entity->getId(); ?></td>
         <td><?php echo $entity->getNome(); ?></td>
         <td><?php echo $entity->getEmail(); ?></td>
+        <td><?php echo ($entity->getType() == 0 ? "Usuario": "Administrador"); ?></td>
+        <td><?php echo ($entity->getStatus() == 0 ? "Ativo": "Desativado"); ?></td>
         <td>
             <a href="<?php echo $this->url('user/default',
                     array('controller'=>'users','action'=>'edit','id'=>$entity->getId()));?>">Editar</a>
