@@ -5,56 +5,37 @@ namespace User;
 return array(
     'router' => array(
         'routes' => array(
-            'cecuser-register' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/register',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'CECUser\Controller',
-                        'controller' => 'Index',
-                        'action' => 'register',
-                    )
-                )
-            ),
-            'cecuser-activate' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route' => '/register/activate[/:key]',
-                    'defaults' => array(
-                        'controller' => 'CECUser\Controller\Index',
-                        'action' => 'activate'
-                    )
-                )
-            ),
-            'cecuser-auth' => array(
+                        
+            'login' => array(
               'type' => 'Literal',
                 'options' => array(
-                    'route'=>'/auth',
+                    'route'=>'/login',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'CECUser\Controller',
+                        '__NAMESPACE__' => 'User\Controller',
                         'controller' => 'Auth',
                         'action' => 'index'
                     )
                 )
             ),
-            'cecuser-logout' => array(
+            
+            'logout' => array(
               'type' => 'Literal',
                 'options' => array(
-                    'route'=>'/auth/logout',
+                    'route'=>'/logout',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'CECUser\Controller',
+                        '__NAMESPACE__' => 'User\Controller',
                         'controller' => 'Auth',
                         'action' => 'logout'
                     )
                 )
             ),
             
-            'cecuser-user' => array(
+            'user' => array(
                 'type' => 'Literal',
                 'options' => array(
                     'route' => '/users',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'CECUser\Controller',
+                        '__NAMESPACE__' => 'User\Controller',
                         'controller' => 'Users',
                         'action' => 'index'
                     )
@@ -71,7 +52,7 @@ return array(
                                 'id' => '\d+'
                             ),
                             'defaults' => array(
-                                '__NAMESPACE__' => 'cecuser\Controller',
+                                '__NAMESPACE__' => 'user\Controller',
                                 'controller' => 'users'
                             )
                         )
@@ -86,7 +67,7 @@ return array(
                                 'page' => '\d+'
                             ),
                             'defaults' => array(
-                                '__NAMESPACE__' => 'cecuser\Controller',
+                                '__NAMESPACE__' => 'user\Controller',
                                 'controller' => 'users'
                             )
                         )
@@ -97,14 +78,15 @@ return array(
                             
         )
     ),
+    
     'controllers' => array(
         'invokables' => array(
-            'cecuser\Controller\Index' => 'CECUser\Controller\IndexController',
-            'cecuser\Controller\Users' => 'CECUser\Controller\UsersController',
-            'cecuser\Controller\Admins' => 'CECUser\Controller\AdminsController',
-            'cecuser\Controller\Auth' => 'CECUser\Controller\AuthController',
+            'user\Controller\Index' => 'User\Controller\IndexController',
+            'user\Controller\Users' => 'User\Controller\UsersController',
+            'user\Controller\Auth' => 'User\Controller\AuthController',
         )
     ),
+    
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions' => true,
@@ -120,6 +102,7 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(
