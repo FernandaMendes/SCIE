@@ -59,26 +59,10 @@ class Module
         
         return array(
           'factories' => array(
-              'CECUser\Mail\Transport' => function($sm) {
-                $config = $sm->get('Config');
-                
-                $transport = new SmtpTransport;
-                $options = new SmtpOptions($config['mail']);
-                $transport->setOptions($options);
-                
-                return $transport;
+              'User\Service\User' => function($sm) {
+                  return new Service\User($sm->get('Doctrine\ORM\EntityManager'));
               },
-              'CECUser\Service\User' => function($sm) {
-                  return new Service\User($sm->get('Doctrine\ORM\EntityManager'),
-                                          $sm->get('CECUser\Mail\Transport'),
-                                          $sm->get('View'));
-              },
-              'CECUser\Service\Admin' => function($sm) {
-                  return new Service\Admin($sm->get('Doctrine\ORM\EntityManager'),
-                                          $sm->get('CECUser\Mail\Transport'),
-                                          $sm->get('View'));
-              },
-              'CECUser\Auth\Adapter' => function($sm)
+              'User\Auth\Adapter' => function($sm)
               {
                   return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));
               }
