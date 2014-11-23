@@ -14,3 +14,6 @@ v0.1.0003
 * Add module base  
 * Add config doctrine_orm  
 
+v0.1.0004  
+* Add modulo usuario  
+* Add crud usuario
