@@ -12,5 +12,5 @@ v0.1.0002
 v0.1.0003
 	Add module doctrine
 	Add module base
-	Add config doctrine_orm 
+  Add config doctrine_orm 
 
