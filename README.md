@@ -17,3 +17,9 @@ v0.1.0003
 v0.1.0004 
 * Add modulo usuario  
 * Add crud usuario
+
+v0.1.0005  
+* Add modulo armazém
+
+v0.1.0006
+* Add modulo fornecedor
