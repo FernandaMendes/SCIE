@@ -59,7 +59,7 @@ class Provider
     /**
      * @var string
      *
-     * @ORM\Column(name="endereco", type="string", length=255, nullable=false)
+     * @ORM\Column(name="enderaco", type="string", length=255, nullable=false)
      */
     private $address;
 
@@ -83,7 +83,9 @@ class Provider
         $hydrator = new Hydrator\ClassMethods;
         $hydrator->hydrate($options, $this);
         */
+        $this->dt = new \DateTime("now", new \DateTimeZone('America/Sao_Paulo'));
         (new Hydrator\ClassMethods)->hydrate($options,$this);
+        
     }
     
     function getId() {

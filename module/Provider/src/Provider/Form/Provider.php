@@ -66,27 +66,15 @@ class Provider extends Form {
                 'class' => ''
             )
         ));
-        
-        $this->add(array(
-            'name' => 'code',
-            'type' => 'Zend\Form\Element\Text',
-            'options' => array(
-                'label' => 'Código: ',
-            ),
-            'attributes' => array(
-                'placeholder' => 'Código',
-                'class' => ''
-            )
-        ));
-        
+
         $radioS = new \Zend\Form\Element\Radio('status');
         $radioS->setLabel('Armazem Ativo ?');
         $radioS->setValueOptions(array(
-                '0' => 'Sim',
-                '1' => 'Não',
+            '0' => 'Sim',
+            '1' => 'Não',
         ));
         $this->add($radioS);
-        
+
         $this->add(array(
             'name' => 'submit',
             'type' => 'Zend\Form\Element\Submit',
