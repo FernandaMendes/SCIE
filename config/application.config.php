@@ -6,6 +6,8 @@ return array(
         'DoctrineORMModule',
         'Base', 
         'User',
+        'Warehouse',
+        'Provider',
     ),
 
     'module_listener_options' => array(
