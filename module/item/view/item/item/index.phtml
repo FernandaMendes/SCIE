@@ -1,0 +1,50 @@
+<h1>Users</h1>
+
+<br />
+
+<p>
+    <a href="<?php echo $this->url('Item/default',array('action'=>'new')); ?>">Novo</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Data de Criação</th>
+        <th>Armazem</th>
+        <th>Fornecedor</th>
+        <th>Custo</th>
+        <th>Quantidade</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Ação</th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr>
+    
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getNome(); ?></td>
+        <td><?php echo $entity->getDescript(); ?></td>
+        <td><?php echo $entity->getDt()->format('d/m/Y H:i:s'); ?></td>
+        <td><?php echo $entity->getWarehouse()->getNome(); ?></td>
+        <td><?php echo $entity->getProvider()->getNome(); ?></td>
+        <td><?php echo $entity->getCost(); ?></td>
+        <td><?php echo $entity->getQtde(); ?></td>
+        <td><?php echo $entity->getCost()*$entity->getQtde(); ?></td>
+        <td><?php echo ($entity->getStatus() == 0 ? "Ativo": "Desativado"); ?></td>
+        <td>
+            <a href="<?php echo $this->url('Item/default',
+                    array('controller'=>'Item','action'=>'edit','id'=>$entity->getId()));?>">Editar</a>
+            
+            <a href="<?php echo $this->url('Item/default',
+                    array('controller'=>'Item','action'=>'delete','id'=>$entity->getId()));?>">Delete</a>
+            
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<br />
+
+<?php echo $this->paginationControl($this->data,'Sliding','partials/paginator'); ?>
