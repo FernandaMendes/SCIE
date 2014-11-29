@@ -8,6 +8,7 @@ return array(
         'User',
         'Warehouse',
         'Provider',
+        'Item',
     ),
 
     'module_listener_options' => array(
