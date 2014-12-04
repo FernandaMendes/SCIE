@@ -1,4 +1,5 @@
 <?php
+
 namespace User;
 
 use Zend\Mvc\MvcEvent;
@@ -34,6 +35,24 @@ class Module {
                 }
             )
         );
+    }
+
+    public function init(ModuleManager $moduleManager) {
+        $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
+
+        $sharedEvents->attach("Zend\Mvc\Controller\AbstractActionController", MvcEvent::EVENT_DISPATCH, array($this, 'validaAuth'), 100);
+    }
+
+    public function validaAuth($e) {
+        $auth = new AuthenticationService;
+        $auth->setStorage(new SessionStorage());
+
+        $controller = $e->getTarget();
+        $matchedRoute = $controller->getEvent()->getRouteMatch()->getMatchedRouteName();
+
+
+        if (!$auth->hasIdentity() and ( $matchedRoute == "user" OR $matchedRoute == "user/paginator"))
+            return $controller->redirect()->toRoute("login");
     }
 
     public function getViewHelperConfig() {

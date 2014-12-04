@@ -120,10 +120,11 @@ class User
         */
         
         $this->salt = base64_encode(Rand::getBytes(8, true));
+        $this->password = $this->encryptPassword($this->password);
+        
         
         (new Hydrator\ClassMethods)->hydrate($options,$this);
         
-        $this->password = $this->encryptPassword(Rand::getString(8));
         $this->activationKey = md5($this->email.$this->salt);
         
         

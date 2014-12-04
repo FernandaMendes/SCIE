@@ -13,7 +13,7 @@ class UserRepository extends EntityRepository
         
         if($user)
         {
-            $hashSenha = $user->encryptPassword($password);
+            $hashSenha = $password;
             if($hashSenha == $user->getPassword())
                 return $user;
             else
