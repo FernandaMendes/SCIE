@@ -1,4 +1,4 @@
-<h3>Editando usuário</h3>
+<h3>Editando Item</h3>
 <br />
 <?php
 
@@ -7,6 +7,13 @@ $form->setAttribute('action',$this->url('Item/default',array('controller'=>'Item
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formCollection($form);
+echo $this->formHidden($form->get('id'));
+echo '<b>Nome:</b> ' .$this->formInput($form->get('nome')) . '<br>'. '<br>';
+echo '<b>Descrição:</b> ' .$this->formInput($form->get('descript')) . '<br>'. '<br>';
+echo '<b>Valor unitário:</b> ' .$this->formInput($form->get('cost')) . '<br>'. '<br>';
+echo '<b>Quantidade:</b> ' .$this->formInput($form->get('qtde')) . '<br>'. '<br>';
+echo '<b>Armazém:</b> ' .$this->formSelect($form->get('warehouse')) . '<br>'. '<br>';
+echo '<b>Fornecedor:</b> ' .$this->formSelect($form->get('provider')) . '<br>'. '<br>';
+echo $this->formSubmit($form->get('submit')) . '<br>'. '<br>';
 echo $this->form()->closeTag();
 ?>

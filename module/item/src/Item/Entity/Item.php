@@ -84,6 +84,7 @@ class Item {
           $hydrator->hydrate($options, $this);
          */
         $this->dt = new \DateTime("now", new \DateTimeZone('America/Sao_Paulo'));
+		$this->status=0;
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
 

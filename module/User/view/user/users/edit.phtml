@@ -7,6 +7,18 @@ $form->setAttribute('action',$this->url('user/default',array('controller'=>'user
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formCollection($form);
+echo $this->formHidden($form->get('id'));
+echo '<b>Nome:</b> ' .$this->formInput($form->get('nome')) . '<br>'. '<br>';
+echo '<b>CPF:</b> ' .$this->formInput($form->get('cpf')) . '<br>'. '<br>';
+echo '<b>Telefone:</b> ' .$this->formInput($form->get('phone')) . '<br>'. '<br>';
+echo '<b>Endereço:</b> ' .$this->formInput($form->get('address')) . '<br>'. '<br>';
+echo '<b>Cidade:</b> ' .$this->formInput($form->get('city')) . '<br>'. '<br>';
+echo '<b>UF:</b> ' .$this->formInput($form->get('uf')) . '<br>'. '<br>';
+echo '<b>Tipo de Usuário:</b> ' .$this->formRadio($form->get('type')) . '<br>'. '<br>';
+echo '<b>Departamento:</b> ' .$this->formInput($form->get('department')) . '<br>'. '<br>';
+echo '<b>E-mail:</b> ' .$this->formInput($form->get('email')) . '<br>'. '<br>';
+echo '<b>Senha:</b> ' .$this->formInput($form->get('password')) . '<br>'. '<br>';
+echo '<b>Usuário Ativo?:</b> ' .$this->formRadio($form->get('status')) . '<br>'. '<br>';
+echo $this->formSubmit($form->get('submit')) . '<br>'. '<br>';
 echo $this->form()->closeTag();
 ?>

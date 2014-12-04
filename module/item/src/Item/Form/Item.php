@@ -66,14 +66,6 @@ class Item extends Form {
             )
         ));
 
-        $radioS = new \Zend\Form\Element\Radio('status');
-        $radioS->setLabel('Armazem Ativo ?');
-        $radioS->setValueOptions(array(
-            '0' => 'Sim',
-            '1' => 'Não',
-        ));
-        $this->add($radioS);
-
         $this->add(array(
             'name' => 'submit',
             'type' => 'Zend\Form\Element\Submit',
