@@ -27,7 +27,7 @@ class Login  extends Form
             'name' => 'submit',
             'type'=>'Zend\Form\Element\Submit',
             'attributes' => array(
-                'value'=>'Autenticar',
+                'value'=>'Entrar',
                 'class' => 'btn-success'
             )
         ));

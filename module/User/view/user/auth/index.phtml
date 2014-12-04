@@ -13,7 +13,12 @@ $form->setAttribute('action',$this->url('login'));
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formCollection($form);
+
+echo '<b>Email: </b>' . $this->formInput($form->get('email')) . '<br><br>';
+echo '<b>Senha: </b>' . $this->formInput($form->get('password')). '<br><br>';
+echo $this->formSubmit($form->get('submit'));
+
+
 echo $this->form()->closeTag();
 
 ?>
