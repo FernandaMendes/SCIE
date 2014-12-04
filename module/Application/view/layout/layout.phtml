@@ -39,13 +39,16 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-                        <?php $user = false; if($user): ?>
+                        <?php $user = $this->userIdentity(); if($user): ?>
                         <li class="active"><a href="<?php echo $this->url('user') ?>"><?php echo 'Usuario' ?></a></li>
                         <?php endif; ?>
                         <li class="active"><a href="<?php echo $this->url('Provider') ?>"><?php echo 'Fornecedor' ?></a></li>
                         <li class="active"><a href="<?php echo $this->url('warehouse') ?>"><?php echo 'Armazem' ?></a></li>
                         <li class="active"><a href="<?php echo $this->url('Item') ?>"><?php echo 'Item' ?></a></li>
                         <li class="active"><a href="<?php echo $this->url('Report') ?>"><?php echo 'Relatorio' ?></a></li>
+                        <?php $user = $this->userIdentity(); if($user): ?>
+                        <li class="active"><a href="<?php echo $this->url('logout') ?>"><?php echo 'Sair' ?></a></li>
+                        <?php endif; ?>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
