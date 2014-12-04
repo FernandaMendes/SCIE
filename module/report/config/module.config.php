@@ -1,42 +1,18 @@
 <?php
 
-namespace User;
+namespace Report;
 
 return array(
     'router' => array(
         'routes' => array(
                         
-            'login' => array(
-              'type' => 'Literal',
-                'options' => array(
-                    'route'=>'/login',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'User\Controller',
-                        'controller' => 'Auth',
-                        'action' => 'index'
-                    )
-                )
-            ),
-            
-            'logout' => array(
-              'type' => 'Literal',
-                'options' => array(
-                    'route'=>'/logout',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'User\Controller',
-                        'controller' => 'Auth',
-                        'action' => 'logout'
-                    )
-                )
-            ),
-            
-            'user' => array(
+            'Report' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/users',
+                    'route' => '/Report',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'User\Controller',
-                        'controller' => 'Users',
+                        '__NAMESPACE__' => 'Report\Controller',
+                        'controller' => 'Report',
                         'action' => 'index'
                     )
                 ),
@@ -45,30 +21,30 @@ return array(
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/users/:action[/:id]]]',
+                            'route' => '/[:controller[/Report/:action[/:id]]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id' => '\d+'
                             ),
                             'defaults' => array(
-                                '__NAMESPACE__' => 'user\Controller',
-                                'controller' => 'users'
+                                '__NAMESPACE__' => 'Report\Controller',
+                                'controller' => 'Report'
                             )
                         )
                     ),
                     'paginator' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/users/page/:page]]',
+                            'route' => '/[:controller[/Report/page/:page]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'page' => '\d+'
                             ),
                             'defaults' => array(
-                                '__NAMESPACE__' => 'user\Controller',
-                                'controller' => 'users'
+                                '__NAMESPACE__' => 'Report\Controller',
+                                'controller' => 'Report'
                             )
                         )
                     )
@@ -81,9 +57,7 @@ return array(
     
     'controllers' => array(
         'invokables' => array(
-            'user\Controller\Index' => 'User\Controller\IndexController',
-            'user\Controller\Users' => 'User\Controller\UsersController',
-            'user\Controller\Auth' => 'User\Controller\AuthController',
+            'Report\Controller\Report' => 'Report\Controller\ReportController',
         )
     ),
     
@@ -94,8 +68,7 @@ return array(
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
         'template_map' => array(
-            #'layout/user' => __DIR__ . '/../view/layout/user.phtml',
-            'user/index/index' => __DIR__ . '/../view/user/index/index.phtml',
+            #'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),

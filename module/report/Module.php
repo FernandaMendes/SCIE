@@ -1,10 +1,10 @@
 <?php
-namespace User;
+
+namespace Report;
 
 use Zend\Mvc\MvcEvent;
 use Zend\Authentication\AuthenticationService,
     Zend\Authentication\Storage\Session as SessionStorage;
-use User\Auth\Adapter as AuthAdapter;
 use Zend\ModuleManager\ModuleManager;
 
 class Module {
@@ -24,14 +24,19 @@ class Module {
     }
 
     public function getServiceConfig() {
+
         return array(
             'factories' => array(
-                'User\Service\User' => function($sm) {
-                    return new Service\User($sm->get('Doctrine\ORM\EntityManager'));
+                'Report\Service\Report' => function($sm) {
+                    return new Service\Report($sm->get('Doctrine\ORM\EntityManager'));
                 },
-                'User\Auth\Adapter' => function($sm) {
-                    return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));
-                }
+                'Report\Form\Estoque' => function($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $wahoreuse = $em->getRepository('Warehouse\Entity\Warehouse');
+                    $wahoreuses = $wahoreuse->fetchPairs();
+
+                    return new Form\Estoque("Report", $wahoreuses);
+                },
             )
         );
     }
@@ -39,7 +44,6 @@ class Module {
     public function getViewHelperConfig() {
         return array(
             'invokables' => array(
-                'UserIdentity' => new View\Helper\UserIdentity()
             )
         );
     }

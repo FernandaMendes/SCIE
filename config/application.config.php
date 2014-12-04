@@ -9,6 +9,7 @@ return array(
         'Warehouse',
         'Provider',
         'Item',
+        'Report',
     ),
 
     'module_listener_options' => array(
