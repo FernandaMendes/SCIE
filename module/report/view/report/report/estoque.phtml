@@ -1,0 +1,40 @@
+<h3>Relatório de Estoque por mês</h3>
+<br />
+
+<?php $list = $this->list;?>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action',$this->url('Report/default',array('controller'=>'Report','action'=>'estoque')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();
+?>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages: ["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Armazens', 'Quantidade'],
+            <?php foreach($list as $item):?>
+            ['<?php echo $item['nome']?>', <?php echo $item['qtde']?>],
+            <?php endforeach;?>
+        ]);
+
+        var options = {
+            hAxis: {title: 'item', titleTextStyle: {color: 'red'}}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+    }
+</script>
+
+<div id="chart_div" style="width: 900px; height: 500px;"></div>

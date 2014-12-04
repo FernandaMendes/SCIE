@@ -1,0 +1,35 @@
+<h3>Novo usuário</h3>
+<br />
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('Report/default', array('controller' => 'Report', 'action' => 'financeiro')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();
+?>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages: ["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Item', 'Custo em Reais'],
+            <?php foreach($list as $item):?>
+            ['<?php echo $item['nome'] . ' - R$' . number_format($item['total'], 2, ',', '.') ?>', <?php echo $item['total']?>],
+            <?php endforeach;?>
+        ]);
+
+        var options = {
+            //title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+</script>
+
+<div id="piechart" style="width: 900px; height: 500px;"></div>
