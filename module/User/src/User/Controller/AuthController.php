@@ -33,10 +33,10 @@ class AuthController extends AbstractActionController
                 $auth = new AuthenticationService;
                 $auth->setStorage($sessionStorage); // Definindo o SessionStorage para a auth
                 
-                $authAdapter = $this->getServiceLocator()->get("CECUser\Auth\Adapter");
+                $authAdapter = $this->getServiceLocator()->get("User\Auth\Adapter");
                 $authAdapter->setUsername($data['email']);
                 $authAdapter->setPassword($data['password']);
-                
+    
                 $result = $auth->authenticate($authAdapter);
                 
                 if($result->isValid())
@@ -48,7 +48,7 @@ class AuthController extends AbstractActionController
 
                     
                     #$sessionStorage->write($auth->getIdentity()['user'],null);
-                    return $this->redirect()->toRoute('cecuser-admin/default',array('controller'=>'users'));
+                    return $this->redirect()->toRoute('login/default',array('controller'=>'users'));
                 }
                 else
                     $error = true; 
@@ -61,9 +61,9 @@ class AuthController extends AbstractActionController
     public function logoutAction()
     {
         $auth = new AuthenticationService;
-        $auth->setStorage(new SessionStorage("cecuser"));
+        $auth->setStorage(new SessionStorage("user"));
         $auth->clearIdentity();
         
-        return $this->redirect()->toRoute('cecuser-auth');
+        return $this->redirect()->toRoute('logout');
     }
 }

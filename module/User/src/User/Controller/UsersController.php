@@ -40,8 +40,10 @@ class UsersController extends CrudController {
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
             }
         }
-
-        return new ViewModel(array('form' => $form));
+        
+        $view = new ViewModel();
+        $view->setVariables(array('form' => $form));
+        return $view;
     }
 
 }
